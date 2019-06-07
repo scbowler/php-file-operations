@@ -23,9 +23,22 @@ $full_path = "products/$product_type.php";
 // check if file exists
 if(file_exists($full_path)){
     // if file exists read data and convert to assoc array
+    $product_file = fopen($full_path, 'r');
+
+    $products = json_decode(fread($product_file, filesize($full_path)), 1);
+
     // Use $product_id to find specific product
-    // if product found print it
-    // if no product found print invalid product id
+    if(!empty($products[$product_id])){
+        // if product found print it
+        $product = $products[$product_id];
+
+        echo '<pre>';
+        print_r($product);
+        echo '</pre>';
+    } else {
+        // if no product found print invalid product id
+        echo "<h1>No $product_type product found with an ID of $product_id</h1>";
+    }
 } else {
     // if no file print no file found
 
