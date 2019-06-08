@@ -32,9 +32,10 @@ if(file_exists($full_path)){
         // if product found print it
         $product = $products[$product_id];
 
-        echo '<pre>';
+        echo '<h1><pre>';
         print_r($product);
-        echo '</pre>';
+        echo '</h1></pre>';
+        // print json_encode($product);
     } else {
         // if no product found print invalid product id
         echo "<h1>No $product_type product found with an ID of $product_id</h1>";
